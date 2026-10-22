@@ -2,7 +2,7 @@
 
 I scanned a room in my apartment with an iPhone and turned it into a physics-enabled digital twin running in **NVIDIA Isaac Sim 6.0.1** (built on Omniverse / OpenUSD), on a cloud GPU from **NVIDIA Brev**. I had no prior 3D or simulation experience. It took about 1.5 hours and around $2 of GPU time.
 
-![The scanned room running in Isaac Sim](docs/isaac_sim_room.png)
+![Inside the scanned room, running live in Isaac Sim on a cloud L4 GPU](docs/isaac_sim_room_inside.png)
 
 ## Pipeline
 
@@ -30,6 +30,10 @@ Isaac Sim, streamed to the browser (~48 FPS)
 | Extras | Invisible safety floor, dome and sun lights, overview camera |
 
 `build_room_twin.py` reads the scan's up axis and units, rotates and scales the room to Y-up metres, puts the floor at y = 0 and centres the room. It then applies `UsdPhysics.CollisionAPI` to every mesh and writes `room_twin.usda`, which references the original scan instead of copying it.
+
+From outside, the scan is one collision-enabled mesh, and the Stage panel shows the generated scene:
+
+![The room from outside, with the scene hierarchy](docs/isaac_sim_room_outside.png)
 
 ## Reproduce it
 
